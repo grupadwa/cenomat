@@ -1,13 +1,14 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import redirect
+from django.shortcuts import render
 from .forms import RegisterForm
-from django.contrib.auth import views as auth_views
+
 
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("login")  # Przekierowanie na stronę logowania
+            return redirect("login")
     else:
         form = RegisterForm()
 

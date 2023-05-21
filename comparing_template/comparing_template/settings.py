@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "register.apps.RegisterConfig",
+    "viewlist.apps.ViewlistConfig",
 ]
 
 LOGIN_REDIRECT_URL = "/"

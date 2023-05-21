@@ -36,7 +36,7 @@
 
     .product-table th {
       background-color: #f2f2f2;
-      font-weight: bold;
+      font-weight: normal;
       text-transform: uppercase;
       font-size: 12px;
       text-align: center;
@@ -82,34 +82,82 @@
     .product-table td.price {
       white-space: nowrap;
     }
-  </style>
+
+    .product-table .shorten-text {
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+ </style>
+  <script>
+    function sortTable(columnIndex, isNumeric = false) {
+      var table, rows, switching, i, x, y, shouldSwitch, shouldReverse;
+      table = document.getElementById("myTable");
+      switching = true;
+      shouldReverse = table.getAttribute("data-sort-direction") === "asc";
+
+      while (switching) {
+        switching = false;
+        rows = table.getElementsByTagName("tr");
+
+        for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          x = rows[i].getElementsByTagName("td")[columnIndex];
+          y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+
+          var xContent = x.innerHTML.toLowerCase().trim();
+          var yContent = y.innerHTML.toLowerCase().trim();
+
+          if (isNumeric) {
+            xContent = parseFloat(xContent.replace('zł', ''));
+            yContent = parseFloat(yContent.replace('zł', ''));
+          }
+
+          if (shouldReverse) {
+            if (xContent < yContent) {
+              shouldSwitch = true;
+              break;
+            }
+          } else {
+            if (xContent > yContent) {
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
+      }
+
+      if (shouldReverse) {
+        table.setAttribute("data-sort-direction", "desc");
+      } else {
+        table.setAttribute("data-sort-direction", "asc");
+      }
+    }
+  </script>
 </head>
 <body>
   <div class="container">
-    <table class="product-table">
+    <table id="myTable" class="product-table" data-sort-direction="asc">
       <thead>
         <tr>
-          <th class="name"><strong>Name</strong></th>
-          <th class="price"><strong>Price</strong></th>
-          <th class="store"><strong>Store</strong></th>
-          <th class="link"><strong>Link</strong></th>
+          <th class="name" onclick="sortTable(0)">NAME</th>
+          <th class="price" onclick="sortTable(1, true)">PRICE</th>
+          <th class="store" onclick="sortTable(2)">STORE</th>
+          <th class="link">LINK</th>
         </tr>
       </thead>
       <tbody>
-        {% for product_name, product_list in product_groups.items %}
+        {% for product in object_list %}
           <tr>
-            <td colspan="4" class="product-name"><strong>{{ product_name }}</strong></td>
-          </tr>
-          {% for product in product_list %}
-            <tr>
-              <td>{{ product.name }}</td>
-              <td class="price">{{ product.price }} zł</td>
-              <td>{{ product.store }}</td>
-              <td><a href="{{ product.store_link }}" class="button-link">Buy Now</a></td>
-            </tr>
-          {% endfor %}
-          <tr>
-            <td colspan="4"></td>
+            <td class="shorten-text">{{ product.name }}</td>
+            <td class="price">{{ product.price }} zł</td>
+            <td class="shorten-text">{{ product.store }}</td>
+            <td><a href="{{ product.store_link }}" class="button-link">Buy Now</a></td>
           </tr>
         {% endfor %}
       </tbody>

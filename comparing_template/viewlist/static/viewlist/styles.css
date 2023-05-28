@@ -1,0 +1,87 @@
+body {
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.product-table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.product-table th,
+.product-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.product-table th {
+  background-color: #f2f2f2;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 12px;
+  text-align: center;
+}
+
+.product-table th.name,
+.product-table th.price,
+.product-table th.store,
+.product-table th.link,
+.product-table th.created,
+.product-table th.updated {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #23527c;
+}
+
+.product-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.product-table tbody tr:hover {
+  background-color: #e9e9e9;
+}
+
+.product-table td:last-child {
+  text-align: center;
+}
+
+.product-table td .button-link {
+  display: inline-block;
+  padding: 6px 12px;
+  color: #fff;
+  background-color: #23527c;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.product-table td .button-link:hover {
+  background-color: #337ab7;
+}
+
+.product-table td.price {
+  white-space: nowrap;
+}
+
+.product-table .shorten-text {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

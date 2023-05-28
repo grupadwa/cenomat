@@ -2,144 +2,11 @@
 <html>
 <head>
   <title>Product list</title>
-  <style>
-    body {
-      background-color: #f4f4f4;
-      font-family: Arial, sans-serif;
-      color: #333;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      border-radius: 4px;
-    }
-
-    .product-table {
-      width: 100%;
-      margin: 0 auto;
-      border-collapse: collapse;
-      margin-top: 20px;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .product-table th,
-    .product-table td {
-      padding: 12px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-
-    .product-table th {
-      background-color: #f2f2f2;
-      font-weight: normal;
-      text-transform: uppercase;
-      font-size: 12px;
-      text-align: center;
-    }
-
-    .product-table th.name,
-    .product-table th.price,
-    .product-table th.store,
-    .product-table th.link {
-      font-size: 16px;
-      font-weight: bold;
-      text-align: center;
-      color: #23527c;
-    }
-
-    .product-table tbody tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-
-    .product-table tbody tr:hover {
-      background-color: #e9e9e9;
-    }
-
-    .product-table td:last-child {
-      text-align: center;
-    }
-
-    .product-table td .button-link {
-      display: inline-block;
-      padding: 6px 12px;
-      color: #fff;
-      background-color: #23527c;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-
-    .product-table td .button-link:hover {
-      background-color: #337ab7;
-    }
-
-    .product-table td.price {
-      white-space: nowrap;
-    }
-
-    .product-table .shorten-text {
-      max-width: 200px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
- </style>
-  <script>
-    function sortTable(columnIndex, isNumeric = false) {
-      var table, rows, switching, i, x, y, shouldSwitch, shouldReverse;
-      table = document.getElementById("myTable");
-      switching = true;
-      shouldReverse = table.getAttribute("data-sort-direction") === "asc";
-
-      while (switching) {
-        switching = false;
-        rows = table.getElementsByTagName("tr");
-
-        for (i = 1; i < (rows.length - 1); i++) {
-          shouldSwitch = false;
-          x = rows[i].getElementsByTagName("td")[columnIndex];
-          y = rows[i + 1].getElementsByTagName("td")[columnIndex];
-
-          var xContent = x.innerHTML.toLowerCase().trim();
-          var yContent = y.innerHTML.toLowerCase().trim();
-
-          if (isNumeric) {
-            xContent = parseFloat(xContent.replace('zł', ''));
-            yContent = parseFloat(yContent.replace('zł', ''));
-          }
-
-          if (shouldReverse) {
-            if (xContent < yContent) {
-              shouldSwitch = true;
-              break;
-            }
-          } else {
-            if (xContent > yContent) {
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-
-        if (shouldSwitch) {
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-        }
-      }
-
-      if (shouldReverse) {
-        table.setAttribute("data-sort-direction", "desc");
-      } else {
-        table.setAttribute("data-sort-direction", "asc");
-      }
-    }
-  </script>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'viewlist/styles.css' %}">
+  <script src="{% static 'viewlist/scripts.js' %}"></script>
 </head>
+
 <body>
   <div class="container">
     <table id="myTable" class="product-table" data-sort-direction="asc">
@@ -149,6 +16,8 @@
           <th class="price" onclick="sortTable(1, true)">PRICE</th>
           <th class="store" onclick="sortTable(2)">STORE</th>
           <th class="link">LINK</th>
+          <th class="created">CREATED AT</th>
+          <th class="updated">UPDATED AT</th>
         </tr>
       </thead>
       <tbody>
@@ -158,6 +27,8 @@
             <td class="price">{{ product.price }} zł</td>
             <td class="shorten-text">{{ product.store }}</td>
             <td><a href="{{ product.store_link }}" class="button-link">Buy Now</a></td>
+            <td>{{ product.created_at|date:"d F, Y H:i" }}</td>
+            <td>{{ product.updated_at|date:"d F, Y H:i" }}</td>
           </tr>
         {% endfor %}
       </tbody>

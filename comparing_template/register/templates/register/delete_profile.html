@@ -1,0 +1,16 @@
+{% extends "main/base.html" %}
+
+{{% extends "main/base.html" %}
+
+{% block title %}Delete profile{% endblock %}
+
+{% block content %}
+    <form method="POST" class="form-group" action="{% url "delete_profile"%}">
+		{% csrf_token %}
+		Do you want to delete?
+		<input type="submit" value="Yes" />
+		<a href="/">Cancel </a>
+
+    </form>
+{% endblock %}
+

@@ -1,1 +1,0 @@
-# proekt_grupa_2

@@ -15,3 +15,8 @@ def register(request):
 
     return render(request, "register/register.html", {"form": form})
 
+from django.shortcuts import render
+
+def homepage_view(request):
+
+    return render(request, 'main/home.html')

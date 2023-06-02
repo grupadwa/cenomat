@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from register import views, homepage_view
 
+from viewlist.views import ProductList
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("register/", views.register, name="register"),
     path('', include("django.contrib.auth.urls")),
-    path("home/", homepage_view.homepage, name="homepage")
+    path('product_list/', ProductList.as_view()),
+    path("home/", homepage_view, name="homepage"),
 ]

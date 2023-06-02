@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product list</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'viewlist/styles.css' %}">
+  <script src="{% static 'viewlist/scripts.js' %}"></script>
+</head>
+
+<body>
+  <div class="container">
+    <table id="myTable" class="product-table" data-sort-direction="asc">
+      <thead>
+        <tr>
+          <th class="name" onclick="sortTable(0)">NAME</th>
+          <th class="price" onclick="sortTable(1, true)">PRICE</th>
+          <th class="store" onclick="sortTable(2)">STORE</th>
+          <th class="link">LINK</th>
+          <th class="created">CREATED AT</th>
+          <th class="updated">UPDATED AT</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in object_list %}
+          <tr>
+            <td class="shorten-text">{{ product.name }}</td>
+            <td class="price">{{ product.price }} zł</td>
+            <td class="shorten-text">{{ product.store }}</td>
+            <td><a href="{{ product.store_link }}" class="button-link">Buy Now</a></td>
+            <td>{{ product.created_at|date:"d F, Y H:i" }}</td>
+            <td>{{ product.updated_at|date:"d F, Y H:i" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

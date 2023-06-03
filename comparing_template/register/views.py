@@ -1,6 +1,5 @@
 from django.shortcuts import redirect
 from django.shortcuts import render
-
 from .forms import RegisterForm
 
 
@@ -15,8 +14,11 @@ def register(request):
 
     return render(request, "register/register.html", {"form": form})
 
-from django.shortcuts import render
+def about(request):
+    return render(request, "main/about_us.html")
+def features(request):
+    return render(request, "main/features.html")
+def homepage(request):
+    return render(request, "main/home.html")
 
-def homepage_view(request):
 
-    return render(request, 'main/home.html')

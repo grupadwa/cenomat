@@ -1,10 +1,8 @@
 {% extends "main/base.html" %}
 
-{{% extends "main/base.html" %}
-
 {% block title %}Delete user{% endblock %}
 
-{% block content %}
+{% block body %}
     <form method="POST" class="form-group" action="{% url "delete_user"%}">
 		{% csrf_token %}
 		{{ form }}

@@ -32,3 +32,12 @@ class MainPageViewsTests(TestCase):
     def test_login(self):
         response = self.client.get(reverse("login"))
         self.assertEqual(response.status_code, 200)
+
+
+    def test_edit_user(self):
+        response = self.client.get(reverse("edit_user"))
+        self.assertEqual(response.status_code, 302)
+
+    def test_delete_user(self):
+        response = self.client.get(reverse("delete_user"))
+        self.assertEqual(response.status_code, 302)

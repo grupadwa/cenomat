@@ -44,7 +44,15 @@ def delete_user(request):
         return redirect('login')
 
 
+def about(request):
+    return render(request, "main/about_us.html")
 
-def homepage_view(request):
 
-    return render(request, 'main/home.html')
+def features(request):
+    return render(request, "main/features.html")
+
+
+def homepage(request):
+    return render(request, "main/home.html")
+
+

@@ -27,7 +27,7 @@ urlpatterns = [
     path("home/", views.homepage, name="homepage"),
     path("features/", views.features, name="features"),
     path("about", views.about, name="about"),
-    path('product_list/', ProductList.as_view()),
+    path('product_list/', ProductList.as_view(), name='product_list'),
     path("home/", homepage_view, name="homepage"),
 
 ]

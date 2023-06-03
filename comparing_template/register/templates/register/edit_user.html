@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+
+{% block title %}Edit user{% endblock %}
+
+{% block content %}
+    <form method="POST" class="form-group" action="{% url "edit_user"%}">
+	{% csrf_token %}
+	{{ form }}
+	<button type="submit" class="btn btn-success">Edit</button>
+
+    </form>
+{% endblock %}

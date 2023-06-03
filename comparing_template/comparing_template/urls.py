@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from register.views import register, homepage_view
+from register.views import register, homepage_view, delete_user, edit_user
 from viewlist.views import ProductList
 
 urlpatterns = [
@@ -25,5 +25,7 @@ urlpatterns = [
     path('', include("django.contrib.auth.urls")),
     path('product_list/', ProductList.as_view()),
     path("home/", homepage_view, name="homepage"),
+    path("delete_user", delete_user, name="delete_user"),
+    path("edit_user", edit_user, name="edit_user"),
 ]
 

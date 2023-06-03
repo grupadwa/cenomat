@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.test import RequestFactory
-from register.homepage_view import homepage
-from register.about_us_view import about
+from register.views import homepage
+from register.views import about
 
 
 class MainPageViewsTests(TestCase):

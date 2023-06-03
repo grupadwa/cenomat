@@ -14,6 +14,8 @@ def register(request):
         form = RegisterForm()
 
     return render(request, "register/register.html", {"form": form})
+
+
 def about(request):
     return render(request, "main/about_us.html")
 def features(request):

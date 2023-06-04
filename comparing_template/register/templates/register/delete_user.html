@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+
+{% block title %}Delete user{% endblock %}
+
+{% block body %}
+    <form method="POST" class="form-group" action="{% url "delete_user"%}">
+		{% csrf_token %}
+		{{ form }}
+		Do you want to delete?
+		<input type="submit" value="Yes" />
+		<a href="/">Cancel </a>
+
+    </form>
+{% endblock %}
+

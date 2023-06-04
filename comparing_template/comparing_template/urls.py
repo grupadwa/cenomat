@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from register.views import register, delete_user, edit_user
 from register import views
 from register.views import register
 from viewlist.views import ProductList
@@ -28,5 +29,7 @@ urlpatterns = [
     path("features/", views.features, name="features"),
     path("about", views.about, name="about"),
     path('product_list/', ProductList.as_view(), name='product_list'),
+    path("delete_user", delete_user, name="delete_user"),
+    path("edit_user", edit_user, name="edit_user"),
 ]
 

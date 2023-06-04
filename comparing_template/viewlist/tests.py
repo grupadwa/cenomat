@@ -3,6 +3,7 @@ from django.urls import reverse
 
 from .models import Product
 
+
 class ProductListTests(TestCase):
 
     @classmethod

@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from register import views
-from register.views import register, homepage_view
+from register.views import register
 from viewlist.views import ProductList
 
 urlpatterns = [
@@ -28,7 +28,5 @@ urlpatterns = [
     path("features/", views.features, name="features"),
     path("about", views.about, name="about"),
     path('product_list/', ProductList.as_view(), name='product_list'),
-    path("home/", homepage_view, name="homepage"),
-
 ]
 
